@@ -80,7 +80,10 @@ def view_removeevent():
 		if tmp[i]['id'] == int(id):
 			del tmp[i]
 			break
-	rds.store_json('calenderEvents',tmp)
+	if tmp:
+		rds.store_json('calenderEvents',tmp)
+	else:
+		rds.delete('calenderEvents')
 	return redirect('/calender')
 
 @calender.route('/calender/removeall')
